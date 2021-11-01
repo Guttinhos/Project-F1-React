@@ -1,34 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Cadastro from './components/Cadastro';
 import { Button, Table } from 'react-bootstrap';
 import axios from 'axios';
 import Editar from './components/Editar';
+import { EquipeContext } from './contexts/EquipeContext';
 
 function App() {
-  const [openCreate, setOpenCreate] = useState(false);
-  const [equipes, setEquipes] = useState([]);
-  const [equipe, setEquipe] = useState({});
-  const [openEdit, setOpenEdit] = useState(false);
-  const [equipeUpdate, setequipeUpdate] = useState(false);
-
-  function toggleEquipe(equipe) {
-    setOpenEdit(true);
-    setEquipe(equipe);
-  }
-
-  useEffect(() => {
-    async function fetchData() {
-      const { data } = await axios.get('http://localhost:8000/api/equipes');
-      setEquipes(data.equipes);
-    }
-    fetchData();
-    setequipeUpdate(false);
-  }, [equipeUpdate]);
-
-  async function deletarEquipe(id) {
-    await axios.delete(`http://localhost:8000/api/equipes/${id}`);
-    setequipeUpdate(true);
-  }
+  const {
+    toggleEquipe,
+    deletarEquipe,
+    setequipeUpdate,
+    setOpenCreate,
+    openCreate,
+    equipe,
+    equipes,
+    openEdit,
+    setOpenEdit,
+  } = useContext(EquipeContext);
 
   return (
     <div className="container">
@@ -65,7 +53,7 @@ function App() {
                   </tr>
                 </thead>
                 <tbody>
-                  {equipes.map((equipe) => {
+                  {equipes?.map((equipe) => {
                     return (
                       <tr key={equipe.id}>
                         <td>{equipe.id}</td>

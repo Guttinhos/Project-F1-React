@@ -1,12 +1,18 @@
 import axios from 'axios';
+import { useContext } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { EquipeContext } from '../contexts/EquipeContext';
 
 export default function Cadastro(props) {
   const { register, handleSubmit } = useForm();
 
+  const { setOpenCreate, setequipeUpdate } = useContext(EquipeContext);
+
   async function salvarDados(register) {
     await axios.post('http://localhost:8000/api/equipes', register);
+    setequipeUpdate(true);
+    setOpenCreate(false);
   }
 
   return (
