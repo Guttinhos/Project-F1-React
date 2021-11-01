@@ -6,7 +6,7 @@ export default function Cadastro(props) {
   const { register, handleSubmit } = useForm();
 
   async function salvarDados(register) {
-    await axios.post('http://localhost:8000/api/add-equipes', register);
+    await axios.post('http://localhost:8000/api/equipes', register);
   }
 
   return (

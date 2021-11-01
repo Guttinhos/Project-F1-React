@@ -9,16 +9,26 @@ function App() {
   const [equipes, setEquipes] = useState([]);
   const [equipe, setEquipe] = useState({});
   const [openEdit, setOpenEdit] = useState(false);
+  const [equipeUpdate, setequipeUpdate] = useState(false);
 
   function toggleEquipe(equipe) {
     setOpenEdit(true);
     setEquipe(equipe);
   }
 
-  useEffect(async () => {
-    const { data } = await axios.get('http://localhost:8000/api/equipes');
-    setEquipes(data.equipes);
-  }, []);
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await axios.get('http://localhost:8000/api/equipes');
+      setEquipes(data.equipes);
+    }
+    fetchData();
+    setequipeUpdate(false);
+  }, [equipeUpdate]);
+
+  async function deletarEquipe(id) {
+    await axios.delete(`http://localhost:8000/api/equipes/${id}`);
+    setequipeUpdate(true);
+  }
 
   return (
     <div className="container">
@@ -71,7 +81,14 @@ function App() {
                           >
                             Editar
                           </Button>{' '}
-                          <Button variant="danger">Deletar</Button>
+                          <Button
+                            variant="danger"
+                            onClick={() => {
+                              deletarEquipe(equipe.id);
+                            }}
+                          >
+                            Deletar
+                          </Button>
                         </td>
                       </tr>
                     );
