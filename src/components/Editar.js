@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from '../api/api';
 import { useContext } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -8,10 +8,7 @@ export default function Editar(props) {
   const { register, handleSubmit } = useForm();
   const { setOpenEdit, setequipeUpdate } = useContext(EquipeContext);
   async function editarDados(register) {
-    await axios.put(
-      `http://localhost:8000/api/equipes/${props.equipe.id}`,
-      register,
-    );
+    await api.put(`/equipes/${props.equipe.id}`, register);
     setOpenEdit(false);
     setequipeUpdate(true);
   }

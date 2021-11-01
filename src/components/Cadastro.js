@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from '../api/api';
 import { useContext } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -10,7 +10,7 @@ export default function Cadastro(props) {
   const { setOpenCreate, setequipeUpdate } = useContext(EquipeContext);
 
   async function salvarDados(register) {
-    await axios.post('http://localhost:8000/api/equipes', register);
+    await api.post('/equipes', register);
     setequipeUpdate(true);
     setOpenCreate(false);
   }

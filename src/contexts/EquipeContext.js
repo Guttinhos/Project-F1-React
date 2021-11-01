@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { Children, createContext, useState, useEffect } from 'react';
+import { api } from '../api/api';
 
 export const EquipeContext = createContext({});
 
@@ -17,7 +17,7 @@ export default function EquipeProvider({ children }) {
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get('http://localhost:8000/api/equipes');
+      const { data } = await api.get('/equipes');
       setEquipes(data.equipes);
     }
     fetchData();
@@ -25,7 +25,7 @@ export default function EquipeProvider({ children }) {
   }, [equipeUpdate]);
 
   async function deletarEquipe(id) {
-    await axios.delete(`http://localhost:8000/api/equipes/${id}`);
+    await api.delete(`/equipes/${id}`);
     setequipeUpdate(true);
   }
 
