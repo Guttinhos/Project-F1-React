@@ -1,4 +1,4 @@
-import { Children, createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { api } from '../api/api';
 
 export const EquipeContext = createContext({});
@@ -25,8 +25,10 @@ export default function EquipeProvider({ children }) {
   }, [equipeUpdate]);
 
   async function deletarEquipe(id) {
-    await api.delete(`/equipes/${id}`);
-    setequipeUpdate(true);
+    if(window.confirm("Deseja deletar ?")) {
+      await api.delete(`/equipes/${id}`);
+      setequipeUpdate(true);
+    }
   }
 
   return (

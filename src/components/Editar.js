@@ -13,6 +13,9 @@ export default function Editar(props) {
     setequipeUpdate(true);
   }
 
+  function onChange() {
+    
+  }
   return (
     <Modal
       {...props}
@@ -31,7 +34,8 @@ export default function Editar(props) {
               type="text"
               name="nome"
               className="form-control"
-              placeholder={props.equipe.nome}
+              defaultValue={props.equipe.nome}
+              onChange={onChange()}
               {...register('nome')}
             />
           </div>
@@ -41,7 +45,7 @@ export default function Editar(props) {
               type="text"
               name="motor"
               className="form-control"
-              placeholder={props.equipe.motor}
+              defaultValue={props.equipe.motor}
               {...register('motor')}
             />
           </div>
@@ -51,8 +55,28 @@ export default function Editar(props) {
               type="text"
               name="chassis"
               className="form-control"
-              placeholder={props.equipe.chassi}
+              defaultValue={props.equipe.chassi}
               {...register('chassi')}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label>Nome do Fundador</label>
+            <input
+              type="text"
+              name="fundador"
+              className="form-control"
+              defaultValue={props.equipe.fundador}
+              {...register('fundador')}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label>Sede</label>
+            <input
+              type="text"
+              name="sede"
+              className="form-control"
+              defaultValue={props.equipe.sede}
+              {...register('sede')}
             />
           </div>
           <div className="form-group mb-3">

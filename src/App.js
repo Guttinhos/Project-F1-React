@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Cadastro from './components/Cadastro';
 import { Button, Table } from 'react-bootstrap';
-import axios from 'axios';
 import Editar from './components/Editar';
 import { EquipeContext } from './contexts/EquipeContext';
 
@@ -9,7 +8,6 @@ function App() {
   const {
     toggleEquipe,
     deletarEquipe,
-    setequipeUpdate,
     setOpenCreate,
     openCreate,
     equipe,
@@ -49,6 +47,8 @@ function App() {
                     <th>Equipe</th>
                     <th>Motor</th>
                     <th>Chassis</th>
+                    <th>Fundador</th>
+                    <th>Sede</th>
                     <th>Opções</th>
                   </tr>
                 </thead>
@@ -60,6 +60,8 @@ function App() {
                         <td>{equipe.nome}</td>
                         <td>{equipe.motor}</td>
                         <td>{equipe.chassi}</td>
+                        <td>{equipe.sede}</td>
+                        <td>{equipe.fundador}</td>
                         <td>
                           <Button
                             variant="warning"
@@ -72,7 +74,7 @@ function App() {
                           <Button
                             variant="danger"
                             onClick={() => {
-                              deletarEquipe(equipe.id);
+                              deletarEquipe(equipe.id)
                             }}
                           >
                             Deletar

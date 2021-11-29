@@ -55,6 +55,24 @@ export default function Cadastro(props) {
             />
           </div>
           <div className="form-group mb-3">
+            <label>Nome do Fundador</label>
+            <input
+              type="text"
+              name="fundador"
+              className="form-control"
+              {...register('fundador')}
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label>Sede</label>
+            <input
+              type="text"
+              name="sede"
+              className="form-control"
+              {...register('sede')}
+            />
+          </div>
+          <div className="form-group mb-3">
             <button type="submit" className="btn btn-primary">
               Salvar Equipe
             </button>
